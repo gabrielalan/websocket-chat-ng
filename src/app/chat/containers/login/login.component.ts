@@ -4,6 +4,7 @@ import { SocketService } from '../../services/socket.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AppState, UserState } from '../../store/index';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,11 @@ import { AppState, UserState } from '../../store/index';
 export class LoginComponent implements OnInit {
   public form: FormGroup;
 
-  public userState: Observable<UserState>;
-
   constructor(
     private builder: FormBuilder,
     private socket: SocketService,
-    private store: Store<AppState>
-  ) {
-    this.userState = store.select('user');
-  }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.form = this.builder.group({
@@ -32,5 +29,6 @@ export class LoginComponent implements OnInit {
 
   enter() {
     this.socket.newUser(this.form.get('username').value);
+    this.router.navigate(['/room/general']);
   }
 }
