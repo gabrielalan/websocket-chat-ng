@@ -1,0 +1,119 @@
+@import 'variables';
+
+/*!
+ * Bootstrap v4.0.0-beta (https://getbootstrap.com)
+ */
+@import "~bootstrap/scss/functions",
+"~bootstrap/scss/variables",
+"~bootstrap/scss/mixins",
+"~bootstrap/scss/print",
+"~bootstrap/scss/reboot",
+"~bootstrap/scss/type",
+  //"~bootstrap/scss/images",
+  //"~bootstrap/scss/code",
+"~bootstrap/scss/grid",
+"~bootstrap/scss/tables",
+"~bootstrap/scss/forms",
+"~bootstrap/scss/buttons",
+  //"~bootstrap/scss/transitions",
+"~bootstrap/scss/dropdown",
+"~bootstrap/scss/button-group",
+"~bootstrap/scss/input-group",
+"~bootstrap/scss/custom-forms",
+"~bootstrap/scss/nav",
+"~bootstrap/scss/navbar",
+"~bootstrap/scss/card",
+  //"~bootstrap/scss/breadcrumb",
+  //"~bootstrap/scss/pagination",
+"~bootstrap/scss/badge",
+  //"~bootstrap/scss/jumbotron",
+  //"~bootstrap/scss/alert",
+  //"~bootstrap/scss/progress",
+  //"~bootstrap/scss/media",
+  //"~bootstrap/scss/list-group",
+  //"~bootstrap/scss/close",
+  //"~bootstrap/scss/modal",
+  //"~bootstrap/scss/tooltip",
+  //"~bootstrap/scss/popover",
+  //"~bootstrap/scss/carousel",
+"~bootstrap/scss/utilities";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.login {
+  display: flex;
+  background-color: #eee;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #a5a5a5;
+}
+
+.rooms-ct {
+  display: flex;
+  width: 100%;
+}
+
+.rooms-ct .rooms {
+  flex: 0 0 20%;
+  border-right: 1px solid #ccc;
+}
+
+.rooms-ct .rooms .nav .active {
+  background: #ccc;
+  border-radius: 0px;
+  color: black;
+}
+
+.chat-container {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container .header {
+  background-color: #565656;
+  padding: 10px;
+}
+
+.chat-container .header h2 {
+  color:  white;
+  margin: 0;
+}
+
+.chat-container .chat {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container .chat .messages {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.chat-container .chat .messages .username {
+  color: green;
+}
+
+.chat-container .chat .messages .system-message {
+  color: #adadad;
+}

@@ -1,0 +1,11 @@
+<div class="login">
+  <form [formGroup]="form" (submit)="enter()">
+    <div class="form-group">
+      <label for="username">Type your username</label>
+      <input class="form-control form-control-lg" type="text" id="username" formControlName="username" />
+    </div>
+    <button type="submit"
+            class="btn btn-lg btn-primary"
+            [disabled]="form.invalid">enter</button>
+  </form>
+</div>
