@@ -1,3 +1,11 @@
-<p>
-  rooms works!
-</p>
+<div class="rooms-ct">
+  <div class="rooms">
+    <h1>LOL</h1>
+  </div>
+  <div class="chat-container">
+    <div class="chat">
+      <app-messages [messages]="messages"></app-messages>
+      <app-send (onSend)="sendMessage($event)"></app-send>
+    </div>
+  </div>
+</div>

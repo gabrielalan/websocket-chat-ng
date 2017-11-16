@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Messages } from '../../store/index';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-rooms',
@@ -8,9 +10,27 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class RoomsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private socket: SocketService
+  ) { }
 
   ngOnInit() {
   }
 
+  sendMessage(message) {
+    this.socket.sendMessage(message);
+  }
+
+  get messages(): Messages[] {
+    return [
+      {
+        username: 'system',
+        message: 'sdu aud asuasud usdha '
+      },
+      {
+        username: 'gaba',
+        message: 'x'
+      }
+    ];
+  }
 }
