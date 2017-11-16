@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
+import {SocketService} from './chat/services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(
+    private socket: SocketService,
+  ) {}
+
+  @HostListener('window:beforeunload')
+  beforeUnload() {
+    this.socket.disconnect();
+  }
 }

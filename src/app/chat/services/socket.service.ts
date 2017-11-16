@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Io, Socket, SOCKET_IO, SOCKET_IO_CONFIG, SocketIoConfig } from './socket-io.facade';
 import { AppState } from '../store/index';
-import { Disconnect, NewUser } from '../store/user.actions';
+import { ChangeCurrentUser, Disconnect, NewUser } from '../store/user.actions';
 
 import { NEW_MESSAGE, NEW_USER, ACTIVE_ROOM, USER_LEFT } from 'websocket-chat-server/constants';
 
@@ -24,8 +24,16 @@ export class SocketService {
     this.subscribe();
   }
 
+  disconnect() {
+    this.store.select('user').subscribe(user => {
+      console.log(user);
+      this.socket.emit(USER_LEFT, { username: user.current });
+    });
+  }
+
   newUser(username: string): void {
     this.socket.emit(NEW_USER, username);
+    this.store.dispatch(new ChangeCurrentUser(username));
   }
 
   subscribe(): void {
