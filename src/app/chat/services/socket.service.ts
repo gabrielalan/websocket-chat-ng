@@ -4,6 +4,7 @@ import { Io, Socket, SOCKET_IO, SOCKET_IO_CONFIG, SocketIoConfig } from './socke
 import { AppState } from '../store/index';
 import { ChangeCurrentUser, Disconnect, NewUser } from '../store/user.actions';
 import { NewMessage, ActiveRoom } from '../store/messages.actions';
+import 'rxjs/add/operator/first';
 
 import { NEW_MESSAGE, NEW_USER, ACTIVE_ROOM, USER_LEFT } from 'websocket-chat-server/constants';
 
@@ -25,21 +26,16 @@ export class SocketService {
     this.subscribe();
   }
 
-  disconnect() {
-    this.store.select('user').subscribe(user => {
-      console.log(user);
-      this.socket.emit(USER_LEFT, { username: user.current });
-    });
+  async disconnect() {
+    const username = await this.store.select('user', 'current').first().toPromise();
+    this.socket.emit(USER_LEFT, { username });
   }
 
-  sendMessage(message) {
-    this.store.select('user', 'current').subscribe((username) => {
-      this.socket.emit(NEW_MESSAGE, {
-        message,
-        username: username,
-        room: 'General'
-      });
-    });
+  async sendMessage(message) {
+    const username = await this.store.select('user', 'current').first().toPromise();
+    const room = await this.store.select('messages', 'active').first().toPromise();
+
+    this.socket.emit(NEW_MESSAGE, { message, room, username });
   }
 
   newUser(username: string): void {

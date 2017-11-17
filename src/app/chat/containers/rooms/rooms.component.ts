@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Messages } from '../../store/index';
+import { AppState, Messages, MessagesState } from '../../store/index';
 import { SocketService } from '../../services/socket.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-rooms',
@@ -9,28 +10,22 @@ import { SocketService } from '../../services/socket.service';
   encapsulation: ViewEncapsulation.None
 })
 export class RoomsComponent implements OnInit {
+  messages: Messages[] = [];
 
   constructor(
-    private socket: SocketService
+    private socket: SocketService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.store.select('messages').subscribe(this.handleMessagesChange.bind(this));
+  }
+
+  handleMessagesChange(messages: MessagesState) {
+    this.messages = messages.rooms[messages.active].messages;
   }
 
   sendMessage(message) {
     this.socket.sendMessage(message);
-  }
-
-  get messages(): Messages[] {
-    return [
-      {
-        username: 'system',
-        message: 'sdu aud asuasud usdha '
-      },
-      {
-        username: 'gaba',
-        message: 'x'
-      }
-    ];
   }
 }

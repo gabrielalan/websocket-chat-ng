@@ -25,4 +25,5 @@ export interface MessagesState {
  */
 export interface AppState {
   user: UserState;
+  messages: MessagesState;
 }

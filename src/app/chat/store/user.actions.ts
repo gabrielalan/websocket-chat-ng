@@ -13,7 +13,7 @@ export const CHANGE_CURRENT_USER = 'CHANGE_CURRENT_USER';
 export class NewUser implements Action {
   readonly type = NEW_USER;
 
-  constructor(public data: { active: number }) {}
+  constructor(public data: { active: number, rooms?: string[] }) {}
 }
 
 /**

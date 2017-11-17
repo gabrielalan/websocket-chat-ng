@@ -13,7 +13,7 @@ export class NewMessage implements Action {
 export class ActiveRoom implements Action {
   readonly type = ACTIVE_ROOM;
 
-  constructor(public data: { active: number, rooms: string[] }) {}
+  constructor(public data: { active: number, rooms?: string[] }) {}
 }
 
 export type All = NewMessage | ActiveRoom;

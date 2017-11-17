@@ -29,6 +29,6 @@ export class LoginComponent implements OnInit {
 
   enter() {
     this.socket.newUser(this.form.get('username').value);
-    this.router.navigate(['/room/general']);
+    this.router.navigate(['/room/General']);
   }
 }
