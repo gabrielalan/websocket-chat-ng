@@ -4,6 +4,7 @@ import { Io, Socket, SOCKET_IO, SOCKET_IO_CONFIG, SocketIoConfig } from './socke
 import { AppState } from '../store/index';
 import { ChangeCurrentUser, Disconnect, NewUser } from '../store/user.actions';
 import { NewMessage, ActiveRoom } from '../store/messages.actions';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/first';
 
 import { NEW_MESSAGE, NEW_USER, ACTIVE_ROOM, USER_LEFT } from 'websocket-chat-server/constants';
@@ -20,7 +21,8 @@ export class SocketService {
     @Inject(SOCKET_IO_CONFIG)
     private config: SocketIoConfig,
 
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {
     this.socket = io(`ws://${config.hostname}:${config.port}`, {transports: ['websocket']});
     this.subscribe();
@@ -31,9 +33,8 @@ export class SocketService {
     this.socket.emit(USER_LEFT, { username });
   }
 
-  async sendMessage(message) {
+  async sendMessage(message, room) {
     const username = await this.store.select('user', 'current').first().toPromise();
-    const room = await this.store.select('messages', 'active').first().toPromise();
 
     this.socket.emit(NEW_MESSAGE, { message, room, username });
   }
@@ -47,6 +48,12 @@ export class SocketService {
     this.socket.on(NEW_USER, this.handleNewUser.bind(this));
     this.socket.on(USER_LEFT, this.handleDisconnection.bind(this));
     this.socket.on(NEW_MESSAGE, this.handleNewMessage.bind(this));
+    this.socket.on(ACTIVE_ROOM, this.handleActiveRoom.bind(this));
+  }
+
+  handleActiveRoom(data) {
+    this.store.dispatch(new ActiveRoom(data));
+    this.router.navigate(['/room', data.active]);
   }
 
   handleNewMessage(data): void {

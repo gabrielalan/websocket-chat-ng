@@ -1,8 +1,12 @@
 <div class="rooms-ct">
   <div class="rooms">
     <h1>LOL</h1>
+    <app-list [rooms]="rooms" [active]="active" (onSelect)="handleSelectRoom($event)"></app-list>
   </div>
   <div class="chat-container">
+    <div class="header">
+      <h2>#General</h2>
+    </div>
     <div class="chat">
       <app-messages [messages]="messages"></app-messages>
       <app-send (onSend)="sendMessage($event)"></app-send>
