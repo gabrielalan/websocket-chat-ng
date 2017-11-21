@@ -1,4 +1,4 @@
-import { LoginComponent } from '../chat/containers/login/login.component';
+import { LoginComponent } from '../login/containers/login/login.component';
 import { RoomsComponent } from '../chat/containers/rooms/rooms.component';
 import { AuthGuard } from './services/auth.guard';
 import { Routes } from '@angular/router';

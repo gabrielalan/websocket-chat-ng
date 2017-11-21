@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Messages } from '../../store/index';
+import { Messages } from '../../../core/store/index';
 
 @Component({
   selector: 'app-messages',
