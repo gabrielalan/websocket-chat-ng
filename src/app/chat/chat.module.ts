@@ -7,6 +7,7 @@ import { user } from './store/user.reducer';
 import { messages } from './store/messages.reducer';
 
 import { SocketService } from './services/socket.service';
+import { AuthGuard } from './services/auth.guard';
 
 import { MessagesComponent } from './components/messages/messages.component';
 import { ListComponent } from './components/list/list.component';
@@ -33,7 +34,8 @@ const components = [
   exports: components,
   providers: [
     SOCKET_IO_PROVIDER,
-    SOCKET_IO_CONFIG_PROVIDER
+    SOCKET_IO_CONFIG_PROVIDER,
+    AuthGuard
   ]
 })
 export class ChatModule {
