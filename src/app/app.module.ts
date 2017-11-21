@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CoreModule } from './core/core.module';
 import { ChatModule } from './chat/chat.module';
+import { LoginModule } from './login/login.module';
 
 import { AppComponent } from './app.component';
-import { RouteModule } from './route/route.module';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,9 @@ import { RouteModule } from './route/route.module';
   ],
   imports: [
     BrowserModule,
-    RouteModule,
-    ChatModule.forRoot()
+    CoreModule.forRoot(),
+    LoginModule,
+    ChatModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AppState, Messages, MessagesState } from '../../store/index';
-import { SocketService } from '../../services/socket.service';
+import { AppState, Messages, MessagesState } from '../../../core/store/index';
+import { SocketService } from '../../../core/services/socket.service';
 import { Store } from '@ngrx/store';
-import { ActiveRoom } from '../../store/messages.actions';
+import { ActiveRoom } from '../../../core/store/messages.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

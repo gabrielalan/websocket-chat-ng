@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SocketService } from '../../services/socket.service';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { AppState, UserState } from '../../store/index';
-import { Router } from "@angular/router";
+import { SocketService } from '../../../core/services/socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
