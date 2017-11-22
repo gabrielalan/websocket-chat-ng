@@ -9,12 +9,18 @@ import { AuthGuard } from './services/auth.guard';
 import { user } from './store/user.reducer';
 import { messages } from './store/messages.reducer';
 import { routes } from './core.routes';
+import { CorePreloadingStrategy } from './core-preloading-strategy';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
-    StoreModule.forRoot({ user, messages })
+    StoreModule.forRoot({ user, messages }),
+    RouterModule.forRoot(
+      routes,
+      {
+        preloadingStrategy: CorePreloadingStrategy
+      }
+    ),
   ],
   exports: [
     RouterModule
@@ -22,6 +28,7 @@ import { routes } from './core.routes';
   providers: [
     SOCKET_IO_CONFIG_PROVIDER,
     SOCKET_IO_PROVIDER,
+    CorePreloadingStrategy,
     AuthGuard,
   ],
   declarations: []

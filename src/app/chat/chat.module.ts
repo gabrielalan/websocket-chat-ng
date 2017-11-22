@@ -7,6 +7,7 @@ import { ListComponent } from './components/list/list.component';
 import { SendComponent } from './components/send/send.component';
 
 import { RoomsComponent } from './containers/rooms/rooms.component';
+import { ChatRoutesModule } from './chat.routes.module';
 
 const components = [
   MessagesComponent,
@@ -20,6 +21,7 @@ const components = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ChatRoutesModule
   ],
   declarations: components,
   exports: components,
