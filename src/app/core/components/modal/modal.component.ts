@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -6,7 +6,7 @@ import {Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/
   styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   @Input() show = false;
 
   constructor(private elRef: ElementRef) { }
@@ -15,4 +15,7 @@ export class ModalComponent implements OnInit {
     document.body.appendChild(this.elRef.nativeElement);
   }
 
+  ngOnDestroy() {
+    document.body.removeChild(this.elRef.nativeElement);
+  }
 }
