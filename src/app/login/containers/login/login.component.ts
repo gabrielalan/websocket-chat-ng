@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public form: FormGroup;
 
+  modalShow = false;
+
   constructor(
     private builder: FormBuilder,
     private socket: SocketService,
@@ -22,6 +24,10 @@ export class LoginComponent implements OnInit {
     this.form = this.builder.group({
       username: [null, [ Validators.required, Validators.minLength(3) ]]
     });
+  }
+
+  toggleModal() {
+    this.modalShow = !this.modalShow;
   }
 
   enter() {

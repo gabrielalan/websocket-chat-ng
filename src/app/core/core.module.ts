@@ -10,6 +10,7 @@ import { user } from './store/user.reducer';
 import { messages } from './store/messages.reducer';
 import { routes } from './core.routes';
 import { CorePreloadingStrategy } from './core-preloading-strategy';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CorePreloadingStrategy } from './core-preloading-strategy';
     ),
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    ModalComponent
   ],
   providers: [
     SOCKET_IO_CONFIG_PROVIDER,
@@ -31,7 +33,9 @@ import { CorePreloadingStrategy } from './core-preloading-strategy';
     CorePreloadingStrategy,
     AuthGuard,
   ],
-  declarations: []
+  declarations: [
+    ModalComponent
+  ]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
